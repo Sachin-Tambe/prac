@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function submitForm(e) {
+    e.preventDefault(); // Stops page from refreshing
+    
+    // Create object and save (fixed syntax)
+    let userdata = { name: name.value, age: Age.value };
+    localStorage.setItem("userProfile", JSON.stringify(userdata));
+    alert("Saved!");
+}
+
+function showdata() {
+    // Parse the string back into an object 'd'
+    let d = JSON.parse(localStorage.getItem("userProfile"));
+    
+    // Use backticks (`) for template literals
+    result.innerText = d ? `Booking: ${d.name}, Age: ${d.age}` : "No data";
+}
+</script>
+</head>
+<body>
+    <h2> Hotel Booking </h2> 
+    <form onsubmit="submitForm(event)">
+        Name: <input type="text" id="name" required><br><br>
+        Age: <input type="number" id="Age" required><br><br> 
+        
+        <input type="submit" value="Save">
+        <input type="reset">
+    </form>
+
+    <button onclick="showdata()">Show Booking</button> 
+    <p id="result"></p>
+</body>
+</html>
+
