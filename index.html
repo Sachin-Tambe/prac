@@ -1,37 +1,44 @@
-<!DOCTYPE html>
+<!Doctype html>
 <html>
 <head>
-<script>
-function submitForm(e) {
-    e.preventDefault(); // Stops page from refreshing
-    
-    // Create object and save (fixed syntax)
-    let userdata = { name: name.value, age: Age.value };
-    localStorage.setItem("userProfile", JSON.stringify(userdata));
-    alert("Saved!");
-}
-
-function showdata() {
-    // Parse the string back into an object 'd'
-    let d = JSON.parse(localStorage.getItem("userProfile"));
-    
-    // Use backticks (`) for template literals
-    result.innerText = d ? `Booking: ${d.name}, Age: ${d.age}` : "No data";
-}
-</script>
+<title></title>
 </head>
 <body>
-    <h2> Hotel Booking </h2> 
-    <form onsubmit="submitForm(event)">
-        Name: <input type="text" id="name" required><br><br>
-        Age: <input type="number" id="Age" required><br><br> 
-        
-        <input type="submit" value="Save">
-        <input type="reset">
-    </form>
+<script>
+function savedata(){
+let d = {
+// document.getElementById("name").value
+Name : document.getElementById("name").value ,
+Age : document.getElementById("age").value ,
+NoOfRoom : document.getElementById("room").value ,
+NoOfPerson : document.getElementById("person").value
+}
 
-    <button onclick="showdata()">Show Booking</button> 
-    <p id="result"></p>
+localStorage.setItem("saved" , JSON.stringify(d));
+alert("saved");
+}
+
+function showdata(){
+let m = JSON.parse(localStorage.getItem("saved"));
+alert(`Name : ${m.Name}`);
+}
+
+</script>
+<form onSubmit="return savedata()" >
+
+Name : <input type='text' id='name' >
+Age : <input type='text' id='age' >
+NoOfRoom : <input type='text' id='room' >
+NoOfPerson : <input type='text' id='person' >
+<br>
+<input type='submit' id='submit' >
+<input type='reset' id='reset' >
+
+</form>
+
+<br> 
+
+<button onClick='showdata()' > showdata </button> 
+
 </body>
-</html>
-
+</html> 
